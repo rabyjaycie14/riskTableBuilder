@@ -6,7 +6,7 @@ CREATE TABLE risks (
     riskID int NOT NULL AUTO_INCREMENT,
     riskDescription varchar(1000) NOT NULL,
     riskCategory varchar(2) NOT NULL,
-    riskProbability varchar(25) NOT NULL,
+    riskProbability INT(25) NOT NULL,
     riskImpact int(5) NOT NULL,
     riskInfoSheet boolean not null default 0,
     PRIMARY KEY (riskID)

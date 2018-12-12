@@ -12,12 +12,12 @@ try {
     $statement->execute();
     $user_info = $statement->fetchAll();
     $statement->closeCursor();
-
-    foreach($user_info as $user){
-      $userID = $user["userID"];
+    $userID;
+    foreach($user_info as $info){
+      $userID = $info['userID'];
     }
 
-    $query_2 = "SELECT  * FROM risk_table.$userID";
+    $query_2 = "SELECT * FROM risk_table.$userID";
     $statement_2 = $db->prepare($query_2);
     $statement_2->execute();
     $user_db = $statement_2->fetchAll();
@@ -42,23 +42,24 @@ try {
       <main>
         <h2>User Login Successful!</h2>
         <?php
-          foreach($user_db as $udb){
-            echo $udb["riskDescription"];
-          }
-          if(!$user_db){
-            echo "OOPS! You don't have a risk table yet! Click below to get started!"; ?>
-            <form action="createRiskTable.php" method="post">
+        if($user_db){
+          echo "OOPS! You don't have a risk table yet! Click below to get started!"; ?>
+          <form action="createRiskTable.php" method="post">
+            <?php foreach($user_info as $user){ ?>
               <input type="hidden" name="userID" value="<?php echo $user['userID']; ?>">
               <input type="submit" value="Create New Risk Table">
-            </form>
-        <?php  }
-          else{
-            echo "Awesome, you already have a risk table! Click below to edit/update your table!"; ?>
-            <form action="updateTable.php" method="post">
+            <?php } ?>
+          </form>
+      <?php  }
+        else{
+          echo "Awesome, you already have a risk table! Click below to edit/update your table!"; ?>
+          <form action="updateTable.php" method="post">
+            <?php foreach($user_info as $user){ ?>
               <input type="hidden" name="userID" value="<?php echo $user['userID']; ?>">
               <input type="submit" value="View/Update Risk Table Information">
-            </form>
-          <?php }
+          <?php  } ?>
+          </form>
+        <?php }
         ?>
 
       </main>

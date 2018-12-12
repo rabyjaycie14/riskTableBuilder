@@ -6,7 +6,8 @@
   $email = filter_input(INPUT_POST, 'email');
   $pass =  filter_input(INPUT_POST, 'pass');
 
-  $query = 'INSERT INTO users (firstName, lastName, email, password)
+  $query = 'INSERT INTO users
+              (firstName, lastName, email, password)
             VALUES
               (:first_name, :last_name, :email, :pass)';
   $statement = $db->prepare($query);
