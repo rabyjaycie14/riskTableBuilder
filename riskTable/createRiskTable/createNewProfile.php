@@ -15,7 +15,6 @@
 
         <label>Password </label>
         <input type="text" name="pass"><br>
-
         <input type="submit" value="Create Profile"><br>
       </form>
   </main>

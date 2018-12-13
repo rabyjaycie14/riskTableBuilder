@@ -7,17 +7,6 @@ $userID = $_POST["userID"];
 try {
 
     $db = new PDO($dsn, $username, $password);
-
-    $query = "SELECT * FROM users WHERE userID = '$userID'";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $user_id = $statement->fetchAll();
-    $statement->closeCursor();
-
-    foreach($user_id as $id){
-      $userID = $id['userID'];
-    }
-
     $servername = "localhost";
     $username = 'ts_user';
     $password = 'pa55word';
@@ -29,7 +18,7 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "CREATE TABLE IF NOT EXISTS `".$userID."` (
+    $sql = "CREATE TABLE IF NOT EXISTS `$userID` (
             riskID int NOT NULL AUTO_INCREMENT,
             riskDescription varchar(1000) NOT NULL,
             riskCategory varchar(2) NOT NULL,
@@ -39,6 +28,7 @@ try {
             PRIMARY KEY (riskID)
             )";
 
+    $result = mysqli_query($conn, $sql);
     $conn->close(); ?>
 
     <main>

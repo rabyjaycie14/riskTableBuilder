@@ -19,13 +19,13 @@
   $statement->closeCursor();
 
   $db = new PDO($dsn, $username, $password);
-  $query_2 = "SELECT * FROM users WHERE password='$pass'";
+  $query_2 = "SELECT * FROM users WHERE email='$email'";
   $statement_2 = $db->prepare($query_2);
   $statement_2->execute();
   $user_info = $statement_2->fetchAll();
   $statement_2->closeCursor();
 
-  if($success){
+  if(!$success){
     ?>
     <main>
     <?php
@@ -43,7 +43,8 @@
         <?php foreach($user_info as $user){
           $userID = $user["userID"];
         }?>
-        <input type="submit" name= userID value="Create Risk Table" value="<?php echo $userID; ?>">
+        <input type="hidden" name="userID" value="<?php echo $userID; ?>">
+        <input type="submit" value="Create Risk Table">
       </form>
     </main>
 <?php } ?>

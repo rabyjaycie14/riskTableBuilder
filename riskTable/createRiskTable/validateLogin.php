@@ -42,7 +42,7 @@ try {
       <main>
         <h2>User Login Successful!</h2>
         <?php
-        if($user_db){
+        if(!$user_db){
           echo "OOPS! You don't have a risk table yet! Click below to get started!"; ?>
           <form action="createRiskTable.php" method="post">
             <?php foreach($user_info as $user){ ?>

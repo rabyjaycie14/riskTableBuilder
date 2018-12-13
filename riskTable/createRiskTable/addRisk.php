@@ -2,34 +2,33 @@
 
 $userID = $_POST["userID"];
 
+$riskID = NULL;
 $riskDescription = filter_input(INPUT_POST, 'description');
 $riskCategory = filter_input(INPUT_POST, 'category');
 $riskProbability = filter_input(INPUT_POST, 'probability');
 $riskImpact = filter_input(INPUT_POST, 'impact');
 $riskInfoSheet = filter_input(INPUT_POST, 'RIS');
-$riskID = NULL;
-
 
 require_once('../model/database.php');
 
 try {
-  $db = new PDO($dsn, $username, $password);
-
-  if ($riskDescription == null || $riskCategory == null || $riskProbability == null || $riskImpact == null
-      || $riskInfoSheet == null) { ?>
+  if ($riskID != null || $riskDescription == null || $riskCategory == null || $riskProbability == null || $riskImpact == null || $riskInfoSheet == null) { ?>
       <main>
-      <?php $error = "Risk information invalid. Go back and try again.";?>
-      <form action="addRiskForm.php" method="post">
-      <input type="hidden" name="userID" value="<?php echo $userID; ?>">
-      <input type="submit" value="Go Back"></form>
+        <?php $error = "Risk information invalid. Go back and try again.";?>
+        <form action="addRiskForm.php" method="post">
+          <input type="hidden" name="userID" value="<?php echo $userID; ?>">
+          <input type="submit" value="Go Back">
+        </form>
     </main>
 
   <?php }
   else {
-    $query = 'INSERT INTO 1
+    $db = new PDO($dsn, $username, $password);
+
+    $query = "INSERT INTO risk_table.$userID
                  (riskID, riskDescription, riskCategory, riskProbability, riskImpact, riskInfoSheet)
               VALUES
-                 (:riskID, :riskDescription, :riskCategory, :riskProbability, :riskImpact, :riskInfoSheet)';
+                 (:riskID, :riskDescription, :riskCategory, :riskProbability, :riskImpact, :riskInfoSheet)";
     $statement = $db->prepare($query);
     $statement->bindValue(':riskID', $riskID);
     $statement->bindValue(':riskDescription', $riskDescription);
@@ -39,6 +38,8 @@ try {
     $statement->bindValue(':riskInfoSheet', $riskInfoSheet);
     $success = $statement->execute();
     $statement->closeCursor();
+
+    echo $success;
 
     if($success){ ?>
       <main>

@@ -3,10 +3,11 @@
 <?php require_once('../model/database.php');
 
 $userID = $_POST["userID"];
+echo $userID;
 
 try {
     $db = new PDO($dsn, $username, $password);
-    $query = "SELECT  * FROM risk_table.$userID";
+    $query = "SELECT * FROM `$userID`";
     $statement = $db->prepare($query);
     $statement->execute();
     $risks = $statement->fetchAll();
@@ -43,9 +44,6 @@ try {
             </td>
         <td>
           <form action="deleteRisk.php" method="post">
-            <?php foreach($risks as $risk){
-                $riskID = $risk['riskID'];
-            } ?>
             <input type="hidden" name="riskID" value="<?php echo $riskID; ?>">
             <input type="submit" value="Delete">
         </form></td>
@@ -53,7 +51,6 @@ try {
     <?php } ?>
     </table>
     <form action="addRiskForm.php" method="post">
-      <?php echo $userID ?>
       <input type="hidden" name="userID" value="<?php echo $userID; ?>">
       <input type="submit" value="Add Risk">
     </form>
