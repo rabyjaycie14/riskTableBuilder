@@ -3,11 +3,12 @@
 <?php require_once('../model/database.php');
 
 $userID = $_POST["userID"];
-echo $userID;
 
 try {
     $db = new PDO($dsn, $username, $password);
-    $query = "SELECT * FROM `$userID`";
+    $query = "SELECT *
+              FROM `$userID`
+              ORDER BY riskProbability DESC";
     $statement = $db->prepare($query);
     $statement->execute();
     $risks = $statement->fetchAll();
@@ -15,16 +16,14 @@ try {
 
     <main>
       <h1>My Table</h1>
-      <p>
-        Below is your risk table! You may download externally, or edit/update information on your table at any time.
-      </p>
-
       <table align="center">
           <th>Risk Description</th>
           <th>Category</th>
           <th>Probability</th>
           <th>Impact</th>
           <th>Risk Information Sheet</th>
+          <th>Delete</th>
+          <th>Edit</th>
 
         <?php foreach($risks as $risk){?>
         <tr>
@@ -35,18 +34,27 @@ try {
             <td>
               <?php
                 if($risk['riskInfoSheet'] == 0){
-                  echo "False";
+                  echo "No";
                 }
                 else {
-                  echo "True";
+                  echo "Yes";
                 }
              ?>
-            </td>
-        <td>
-          <form action="deleteRisk.php" method="post">
-            <input type="hidden" name="riskID" value="<?php echo $riskID; ?>">
-            <input type="submit" value="Delete">
-        </form></td>
+          </td>
+          <td>
+            <form action="deleteRisk.php" method="post">
+              <input type="hidden" name="riskDescription" value="<?php echo $risk['riskDescription']; ?>">
+              <input type="hidden" name="userID" value="<?php echo $userID; ?>">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+          <td>
+            <form action="editRiskForm.php" method="post">
+              <input type="hidden" name="riskDescription" value="<?php echo $risk['riskDescription']; ?>">
+              <input type="hidden" name="userID" value="<?php echo $userID; ?>">
+              <input type="submit" value="Edit">
+            </form>
+          </td>
       </tr>
     <?php } ?>
     </table>

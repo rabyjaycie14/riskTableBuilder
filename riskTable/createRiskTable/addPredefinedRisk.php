@@ -1,17 +1,29 @@
 <?php include '../view/header.php';
 
 $userID = $_POST["userID"];
-
+$riskSelection = filter_input(INPUT_POST, 'risk_list');
 $riskID = NULL;
-$riskDescription = filter_input(INPUT_POST, 'description');
-$riskCategory = filter_input(INPUT_POST, 'category');
-$riskProbability = filter_input(INPUT_POST, 'probability');
-$riskImpact = filter_input(INPUT_POST, 'impact');
-$riskInfoSheet = filter_input(INPUT_POST, 'RIS');
 
 require_once('../model/database.php');
 
 try {
+
+  $db = new PDO($dsn, $username, $password);
+  $query = "SELECT * FROM risks WHERE riskDescription ='$riskSelection'";
+  $statement = $db->prepare($query);
+  $statement->execute();
+  $risks = $statement->fetchAll();
+  $statement->closeCursor();
+
+  foreach($risks as $risk){
+    $riskDescription = $risk['riskDescription'];
+    $riskCategory = $risk['riskCategory'];
+    $riskProbability = $risk['riskProbability'];
+    $riskImpact = $risk['riskImpact'];
+    $riskInfoSheet = $risk['riskInfoSheet'];
+  }
+
+
   if ($riskID != null || $riskDescription == null || $riskCategory == null || $riskProbability == null || $riskImpact == null || $riskInfoSheet == null) { ?>
       <main>
         <?php $error = "Risk information invalid. Go back and try again.";?>
@@ -38,6 +50,8 @@ try {
     $statement->bindValue(':riskInfoSheet', $riskInfoSheet);
     $success = $statement->execute();
     $statement->closeCursor();
+
+    echo $success;
 
     if($success){ ?>
       <main>
