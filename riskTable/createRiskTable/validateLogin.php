@@ -7,14 +7,16 @@ require_once('../model/database.php');
 
 try {
     $db = new PDO($dsn, $username, $password);
-    $query = "SELECT * FROM users WHERE email='$email' AND password='$pass'";
+    $query = 'SELECT * FROM users WHERE email= :email ';
     $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
     $statement->execute();
     $user_info = $statement->fetchAll();
     $statement->closeCursor();
-    $userID;
+
     foreach($user_info as $info){
       $userID = $info['userID'];
+
     }
 
     $query_2 = "SELECT * FROM risk_table.$userID";
@@ -23,11 +25,9 @@ try {
     $user_db = $statement_2->fetchAll();
     $statement_2->closeCursor();
 
-    if(!$user_info){
-      ?>
+    if(!$user_info){ ?>
       <main>
-      <?php
-      echo "User Login Failed, Please go back and try again or create a new profile"; ?>
+      <?php echo "User Login Failed, Please go back and try again or create a new profile"; ?>
       <form action="login.php" method="post">
         <input type="submit" value="Login">
       </form>

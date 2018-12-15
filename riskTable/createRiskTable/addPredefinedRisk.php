@@ -23,7 +23,6 @@ try {
     $riskInfoSheet = $risk['riskInfoSheet'];
   }
 
-
   if ($riskID != null || $riskDescription == null || $riskCategory == null || $riskProbability == null || $riskImpact == null || $riskInfoSheet == null) { ?>
       <main>
         <?php $error = "Risk information invalid. Go back and try again.";?>
@@ -50,8 +49,6 @@ try {
     $statement->bindValue(':riskInfoSheet', $riskInfoSheet);
     $success = $statement->execute();
     $statement->closeCursor();
-
-    echo $success;
 
     if($success){ ?>
       <main>

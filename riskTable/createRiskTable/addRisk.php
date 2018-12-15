@@ -14,7 +14,7 @@ require_once('../model/database.php');
 try {
   if ($riskID != null || $riskDescription == null || $riskCategory == null || $riskProbability == null || $riskImpact == null || $riskInfoSheet == null) { ?>
       <main>
-        <?php $error = "Risk information invalid. Go back and try again.";?>
+        <?php echo "Risk information invalid. Go back and try again.";?>
         <form action="addRiskForm.php" method="post">
           <input type="hidden" name="userID" value="<?php echo $userID; ?>">
           <input type="submit" value="Go Back">

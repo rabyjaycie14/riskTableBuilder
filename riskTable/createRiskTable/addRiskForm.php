@@ -35,19 +35,45 @@ try {
         <form action="addRisk.php" method="post" >
 
           <label>Risk Description</label>
-          <input type="text" name="description"><br>
+          <input type="text" name="description" placeholder="Description"><br>
 
           <label>Risk Category</label>
-          <input type="text" name="category"><br>
+          <select name="category">
+              <option>Product Size</option>
+              <option>Business Impact</option>
+              <option>Stakeholder Characteristics</option>
+              <option>Process Definitions</option>
+              <option>Development Environment</option>
+              <option>Technology to Be Built</option>
+              <option>Staff Size and Experience</option>
+          </select>
 
           <label>Risk Probability</label>
-          <input type="text" name="probability"><br>
+          <select name="probability">
+          <?php
+              for ($i=1; $i<=100; $i++)
+              {
+                  ?>
+                      <option value="<?php echo $i;?>"><?php echo $i . "%";?></option>
+                  <?php
+              }
+          ?>
+          </select>
 
           <label>Risk Impact</label>
-          <input type="text" name="impact"><br>
+          <select name="impact">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+          </select>
 
           <label>Risk Information Sheet</label>
-          <input type="text" name="RIS"><br>
+          <select name="RIS">
+              <option>Yes</option>
+              <option>No</option>
+          </select>
 
           <label>&nbsp;</label>
           <input type="hidden" name="userID" value="<?php echo $userID; ?>">

@@ -62,6 +62,9 @@ try {
       <input type="hidden" name="userID" value="<?php echo $userID; ?>">
       <input type="submit" value="Add Risk">
     </form>
+
+    <input type="button" value="Print" onClick="window.print()">
+
     </main>
 
 <?php

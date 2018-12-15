@@ -52,7 +52,7 @@ INSERT INTO risks VALUES
 ("603","Are formal technical reviews of the requirements specification, design, and code conducted regularly?","Pd","20", "3","No"),
 ("604","Are formal technical reviews of the requirements specification, design, and code conducted regularly?","Pd","30", "3","No"),
 ("605","Configuration management used inefficiently to maintain consistency among system/software requirements, design, code, and test cases.","Pd","30", "3","No"),
-("606","re changes to customer requirements tracked and handled correctly?","Pd","30", "2","No");
+("606","Are changes to customer requirements tracked and handled correctly?","Pd","30", "2","No");
 
 CREATE TABLE users (
     userID int NOT NULL AUTO_INCREMENT,

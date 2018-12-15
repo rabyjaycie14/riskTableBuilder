@@ -12,17 +12,19 @@ try {
     ?>
     <main>
       <h2>User Login</h2>
-      <form action="validateLogin.php" method="post">
+      <div>
+        <form action="validateLogin.php" method="post">
 
-        <label>Email  </label>
-        <input type="text" name="email">
+          <label>Email</label><br>
+          <input type="text" name="email" placeholder="Email">
 
-        <label>Password </label>
-        <input type="text" name="pass">
+          <label>Password</label><br>
+          <input type="text" name="pass" placeholder="Password">
 
-        <input type="submit" value="Submit">
+          <input type="submit" value="Submit">
 
-      </form>
+        </form>
+      </div>
     </main>
 
 
