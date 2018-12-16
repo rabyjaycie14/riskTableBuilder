@@ -20,10 +20,10 @@ try {
 
     $sql = "CREATE TABLE IF NOT EXISTS `$userID` (
             riskID int NOT NULL AUTO_INCREMENT,
-            riskDescription varchar(1000) NOT NULL,
+            riskDescription varchar(500) NOT NULL UNIQUE,
             riskCategory varchar(2) NOT NULL,
-            riskProbability varchar(25) NOT NULL,
-            riskImpact int(5) NOT NULL,
+            riskProbability int NOT NULL,
+            riskImpact int NOT NULL,
             riskInfoSheet varchar(3) NOT NULL,
             PRIMARY KEY (riskID)
             )";

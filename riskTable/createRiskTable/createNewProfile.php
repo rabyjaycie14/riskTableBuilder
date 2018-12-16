@@ -14,7 +14,7 @@
         <input type="text" name="email" placeholder="Email"><br>
 
         <label>Password </label>
-        <input type="text" name="pass" placeholder="Password"><br>
+        <input type="password" name="pass" placeholder="Password"><br>
         <input type="submit" value="Create Profile"><br>
       </form>
   </main>

@@ -4,11 +4,11 @@ USE risk_table;
 
 CREATE TABLE risks (
     riskID int NOT NULL AUTO_INCREMENT,
-    riskDescription varchar(1000) NOT NULL,
+    riskDescription varchar(500) NOT NULL UNIQUE,
     riskCategory varchar(2) NOT NULL,
-    riskProbability INT(25) NOT NULL,
-    riskImpact int(5) NOT NULL,
-    riskInfoSheet varchar(10) NOT NULL,
+    riskProbability INT NOT NULL,
+    riskImpact int NOT NULL,
+    riskInfoSheet varchar(3) NOT NULL,
     PRIMARY KEY (riskID)
 );
 
@@ -28,7 +28,6 @@ INSERT INTO risks VALUES
 ("204","Have staff received necessary training?","ST","30", "2","No"),
 ("300","Negative effect of this product on company revenue?","BU","10", "1","No"),
 ("301","Senior management unavailable for consultation.","BU","30", "3","No"),
-("302","Senior management unavailable for consultation.","BU","50", "2","No"),
 ("303","Number of customers who will use this product and the consistency of their needs relative to the product?","BU","40", "3","No"),
 ("304","Sophistication of end users?","BU","60", "3","No"),
 ("305","Quality of product documentation delivered to the customer does not meet expectations.","BU","10", "2","No"),
@@ -49,7 +48,6 @@ INSERT INTO risks VALUES
 ("600","Has your organization developed or acquired a series of software engineering training courses for managers and technical staff?","Pd","20", "2","No"),
 ("601","Are published software engineering standards provided for every software developer and software manager?","Pd","10", "2","No"),
 ("602","Document outlines and examples have not been developed for all deliverables defined as part of the software process.","Pd","10", "3","No"),
-("603","Are formal technical reviews of the requirements specification, design, and code conducted regularly?","Pd","20", "3","No"),
 ("604","Are formal technical reviews of the requirements specification, design, and code conducted regularly?","Pd","30", "3","No"),
 ("605","Configuration management used inefficiently to maintain consistency among system/software requirements, design, code, and test cases.","Pd","30", "3","No"),
 ("606","Are changes to customer requirements tracked and handled correctly?","Pd","30", "2","No");
