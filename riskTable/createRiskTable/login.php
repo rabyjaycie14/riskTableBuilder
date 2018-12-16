@@ -19,7 +19,7 @@ try {
           <input type="text" name="email" placeholder="Email">
 
           <label>Password</label><br>
-          <input type="text" name="pass" placeholder="Password">
+          <input type="password" name="pass" placeholder="Password">
 
           <input type="submit" value="Submit">
 

@@ -31,16 +31,8 @@ try {
             <td><?php echo $risk['riskCategory']; ?></td>
             <td><?php echo $risk['riskProbability']; ?></td>
             <td><?php echo $risk['riskImpact']; ?></td>
-            <td>
-              <?php
-                if($risk['riskInfoSheet'] == 0){
-                  echo "No";
-                }
-                else {
-                  echo "Yes";
-                }
-             ?>
-          </td>
+            <td><?php echo $risk['riskInfoSheet']; ?></td>
+
           <td>
             <form action="deleteRisk.php" method="post">
               <input type="hidden" name="riskDescription" value="<?php echo $risk['riskDescription']; ?>">

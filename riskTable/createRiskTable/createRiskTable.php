@@ -24,7 +24,7 @@ try {
             riskCategory varchar(2) NOT NULL,
             riskProbability varchar(25) NOT NULL,
             riskImpact int(5) NOT NULL,
-            riskInfoSheet boolean not null default 0,
+            riskInfoSheet varchar(3) NOT NULL,
             PRIMARY KEY (riskID)
             )";
 

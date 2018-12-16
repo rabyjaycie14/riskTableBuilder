@@ -35,15 +35,8 @@ try{
             <input type="text" name="impact" value="<?php echo $risk['riskImpact'];?>"><br>
 
             <label>Risk Information Sheet</label>
-            <input type="text" name="RIS" value="<?php
-                            if($risk['riskInfoSheet'] == 0){
-                              echo "No";
-                            }
-                            else {
-                              echo "Yes";
-                            }
-                         ?>
-                      ">
+            <input type="text" name="RIS" value="<?php echo $risk['riskInfoSheet']; ?>"><br>
+
             <input type="hidden" name="riskID" value="<?php echo $risk['riskID']; ?>">
             <input type="hidden" name="userID" value="<?php echo $userID; ?>">
             <input type="submit" value="Update"><br>
