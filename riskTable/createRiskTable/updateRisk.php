@@ -10,8 +10,8 @@ $riskProbability = filter_input(INPUT_POST, 'riskProbability');
 $riskImpact = filter_input(INPUT_POST, 'impact');
 $riskInfoSheet = filter_input(INPUT_POST, 'RIS');
 
-if ($riskDescription === null || $riskCategory === null || $riskProbability === null
-    || $riskImpact === null || $riskInfoSheet === null) {
+if ($riskDescription === null || $riskCategory === null || $riskProbability < 1 || $riskProbability > 100
+    || $riskImpact < 1 || $riskImpact > 5 || $riskInfoSheet === null) {
    ?>
     <main>
       <?php echo "Risk information invalid. Go back and try again.";?>

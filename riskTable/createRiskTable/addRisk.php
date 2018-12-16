@@ -12,7 +12,8 @@ $riskInfoSheet = filter_input(INPUT_POST, 'RIS');
 require_once('../model/database.php');
 
 try {
-  if ($riskID != null || $riskDescription == null || $riskCategory == null || $riskProbability == null || $riskImpact == null || $riskInfoSheet == null) { ?>
+  if ($riskID != null || $riskDescription == null || $riskCategory == null || $riskProbability < 1 || $riskProbability > 100
+   || $riskImpact < 1 || $riskImpact > 100|| $riskInfoSheet == null) { ?>
       <main>
         <?php echo "Risk information invalid. Go back and try again.";?>
         <form action="addRiskForm.php" method="post">

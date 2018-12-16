@@ -7,9 +7,10 @@ require_once('../model/database.php');
 
 try {
     $db = new PDO($dsn, $username, $password);
-    $query = 'SELECT * FROM users WHERE email= :email ';
+    $query = 'SELECT * FROM users WHERE email= :email and pass = :pass';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
+    $statement->bindValue(':pass', $pass);
     $statement->execute();
     $user_info = $statement->fetchAll();
     $statement->closeCursor();
